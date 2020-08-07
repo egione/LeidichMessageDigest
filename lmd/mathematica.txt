@@ -1,0 +1,45 @@
+/*
+Mathematica Demo for the Leidich Message Digest Library
+
+This code produces the same outputs as demo.c.
+*/
+
+LMD4 Input:
+
+A=(2^128-2^125-2^110-2^100);B=(2^128-2^101-2^98-2^76);n=128;X0=0;C0=1;Y0=2;D0=3;M=0;j=(2^15)/n-1;L=Array[#&,j+1];x=X0;c=C0;y=Y0;d=D0;For[i=0,i<=j,i++,x=BitXor[x,y];p=(A*BitXor[x,L[[i+1]]])+c;x=Mod[p,2^n];c=BitShiftRight[p,n];q=(B*BitXor[y,L[[BitXor[i,((j+1)/2)]+1]]])+d;y=Mod[q,2^n];d=BitShiftRight[q,n]];p=p+(y*(2^n))+d;p=Mod[p,2^(2*n)];z=BitXor[p,M];Print[BaseForm[z,16]]
+
+LMD4 Output:
+
+6f2fefec0cae3656703ceb0aed691a7d0d7d58c6bf42e053040a71eeeea525b3
+
+LMD5 Input:
+
+A=(2^256-2^243-2^236-2^194);B=(2^256-2^220-2^206-2^183);n=256;X0=0;C0=1;Y0=2;D0=3;M=0;j=(2^15)/n-1;L=Array[#&,j+1];x=X0;c=C0;y=Y0;d=D0;For[i=0,i<=j,i++,x=BitXor[x,y];p=(A*BitXor[x,L[[i+1]]])+c;x=Mod[p,2^n];c=BitShiftRight[p,n];q=(B*BitXor[y,L[[BitXor[i,((j+1)/2)]+1]]])+d;y=Mod[q,2^n];d=BitShiftRight[q,n]];p=p+(y*(2^n))+d;p=Mod[p,2^(2*n)];z=BitXor[p,M];Print[BaseForm[z,16]]
+
+LMD5 Output:
+
+25cace35c4330243a20f890f14704503d12f1d998146e01857167ba3d811300b52995621358cd9f92194810c3213c04c2f96a7867f9fa819e41ea73642d59230
+
+LMD6 Input:
+
+A=(2^512-2^498-2^496-2^427);B=(2^512-2^481-2^404-2^362);n=512;X0=0;C0=1;Y0=2;D0=3;M=0;j=(2^15)/n-1;L=Array[#&,j+1];x=X0;c=C0;y=Y0;d=D0;For[i=0,i<=j,i++,x=BitXor[x,y];p=(A*BitXor[x,L[[i+1]]])+c;x=Mod[p,2^n];c=BitShiftRight[p,n];q=(B*BitXor[y,L[[BitXor[i,((j+1)/2)]+1]]])+d;y=Mod[q,2^n];d=BitShiftRight[q,n]];p=p+(y*(2^n))+d;p=Mod[p,2^(2*n)];z=BitXor[p,M];Print[BaseForm[z,16]]
+
+LMD6 Output:
+
+a5f593b3e7b791959da4a0973cc319520925b996699452eeecc2a6ed98ee0cd0c9f770ca77c68748e85d29867f45d9900495aec0463c3418d228d1d1f7c9bdc583e22e63d0005b8ab113ff81f05ccbf595a9bd8b737c3c70bff40fe571234550c080a4f32e66f7908be8366edf75c186cede240c566415cce5c6d636e470c565
+
+LMD7 Input:
+
+A=(2^512-((2^32)*16^^D1AEF329));B=(2^512-((2^32)*16^^E5467E8F));n=512;t=2^n;u=2^(n+n);X0=1;C0=2;Y0=3;D0=4;M=0;j=((2^15)/n)-1;L=Array[#&,j+1];x=X0;c=C0;y=Y0;d=D0;For[i=0,i<j,i+=2,x=BitXor[x,y];c=BitXor[c,d];p=(A*BitXor[x,L[[i+1]]])+BitXor[c,L[[i+2]]];x=Mod[p,t];c=BitShiftRight[p,n];q=(B*BitXor[y,L[[BitXor[i,((j+1)/2)]+1]]])+BitXor[d,L[[BitXor[i,((j+1)/2)]+2]]];y=Mod[q,t];d=BitShiftRight[q,n]];p=Mod[p+BitShiftLeft[y,n]+d,u];z=BitXor[p,M];Print[BaseForm[z,16]];
+
+LMD7 Output:
+
+23f02b7e5b0d92db672706d46d00b7e19bf25a746dffe8c4afcf7c4d71bdb4df8128af2d41a40605a2c158cb4ea33e776b7da1877f1053bf9fa2d5c40dd01c5a19b4aa63034626d7f6adff9fa871b5709878115ec2e4c5eb1caa4b86d8dea9b28caea6278db03a6b03c6bebaad49cf3279fb724a653225613d9f6422ce63a70e
+
+LMD8 Input:
+
+A=(2^256-16^^9C20E342);B=(2^256-16^^D28CC42E);n=256;t=2^n;u=2^(n+n);X0=1;C0=2;Y0=3;D0=4;M=0;j=((2^15)/n)-1;L=Array[#&,j+1];x=X0;c=C0;y=Y0;d=D0;For[i=0,i<j,i+=2,x=BitXor[x,y];c=BitXor[c,d];p=(A*BitXor[x,L[[i+1]]])+BitXor[c,L[[i+2]]];x=Mod[p,t];c=BitShiftRight[p,n];q=(B*BitXor[y,L[[BitXor[i,((j+1)/2)]+1]]])+BitXor[d,L[[BitXor[i,((j+1)/2)]+2]]];y=Mod[q,t];d=BitShiftRight[q,n]];p=Mod[p+BitShiftLeft[y,n]+d,u];z=BitXor[p,M];Print[BaseForm[z,16]];
+
+LMD8 Output:
+
+7909b4a019a49f859f47b9aee785db957a79dd8838bb8ddac46d25c5f3470c8e3d324c97a7b8f647fcafd945db87257006eb86d92363204567ec5483f37a3ef6
